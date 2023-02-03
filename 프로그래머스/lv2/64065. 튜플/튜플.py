@@ -1,22 +1,15 @@
-import re
-used = [0] * 100001
+from collections import Counter
 def solution(s):
     answer = []
-    s = re.split('[{|}]',s)
-    
+    s = s.replace('{','')
+    s = s.replace('}','')
+    # s = s.replace(',','')
+    s = s.split(',')
+    s = list(map(int, s))
     # print(s)
-    ans = []
+    s = list(Counter(s).most_common())
     for i in s:
-        if len(i) > 0 and i != ',' and i != '{' and i != '}':
-            i = i.split(',')
-            i = list(map(int, i))
-            ans.append(i)
-    ans.sort(key = len)
-    for a in ans:
-        for i in a:
-            if used[i] == 0:
-                answer.append(i)
-                used[i] = 1
-
+        answer.append(i[0])
+    # print(s)
             
     return answer
