@@ -42,27 +42,8 @@ def bfs(taxi):
                     visited[nx][ny] = visited[x][y] + 1
                     q.append((nx, ny))
     return heap
-def taxibfs(taxi, fin):
-    heap =[]
-    x, y = taxi
-    q = deque()
-    q.append((x, y))
-    visited = [[-1 for i in range(N)] for i in range(N)]
-    visited[x][y] = 0
-    while q:
-        x, y = q.popleft()
-        if fin == (x, y):
-            return True
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if 0 <= nx < N and 0 <= ny < N:
-                if board[nx][ny] != 1 and visited[nx][ny] == -1:
-                    visited[nx][ny] = visited[x][y] + 1
-                    q.append((nx, ny))
-    return False
+
 def calbfs(start, target):
-    heap =[]
     x, y = start
     q = deque()
     q.append((x, y))
@@ -94,21 +75,17 @@ while 1:
         Fuel = -1
         break
     totalDis = distance + distance2
-    #이동하는 도중에 연료가 바닥
+   
     if(Fuel < distance):
         Fuel = -1
         break
     else:
         Fuel -= distance
-        if taxibfs(taxi, (fx, fy)):
-            if Fuel < distance2:
-                Fuel = -1
-                break
-            else:
-                Fuel = Fuel + distance2 
-        else:
+        if Fuel < distance2:
             Fuel = -1
-            break    
+            break
+        else:
+            Fuel = Fuel + distance2    
     board[x][y] = 0
     taxi = (fx,fy)
     cnt += 1
@@ -117,12 +94,3 @@ if cnt < M:
 else:
     print(Fuel)
 
-# 6 1 19
-# 1 1 0 1 1 0
-# 1 0 1 0 1 1
-# 1 0 1 0 1 0
-# 1 0 1 0 1 0
-# 1 0 1 0 1 0
-# 0 0 1 0 0 0
-# 1 3
-# 4 2 1 6 
