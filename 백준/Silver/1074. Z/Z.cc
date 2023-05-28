@@ -42,7 +42,5 @@ int main()
     cin >> N >> r >> c;
     ans = 0;
    int result = solve(pow(2,N),0 ,0, 0);
-//    cout << result << "\n";
-   cout << ans-1;
-    // cout << ans-1;
+   cout << result-1 << "\n";
 }
