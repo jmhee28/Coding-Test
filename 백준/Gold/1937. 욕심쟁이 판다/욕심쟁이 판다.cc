@@ -39,7 +39,6 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
     cin >> N;
-    // vector<pair<int, pair<int, int> > > start;
 
     for (int i = 0; i < N; i++)
     {
