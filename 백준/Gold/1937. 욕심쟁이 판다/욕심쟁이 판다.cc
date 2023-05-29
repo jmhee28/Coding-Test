@@ -41,7 +41,7 @@ int main()
             int m;
             cin >> m;
             trees[i][j] = m;
-            start.push_back( make_pair( m, make_pair(i, j) ) );
+            start.push_back( { m, {i, j} } );
         }
     }
     sort(start.begin(), start.end());
