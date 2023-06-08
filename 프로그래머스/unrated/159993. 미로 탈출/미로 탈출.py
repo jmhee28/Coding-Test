@@ -45,14 +45,12 @@ def solution(maps):
                 ex, ey = i, j
             if board[i][j] == "L":
                 lx, ly = i, j
-    startToExit = bfs(sx, sy, n, m, "E")
     toLever = bfs(sx, sy, n, m, "L")
     leverToExit = bfs(lx, ly,n, m, "E")
     if toLever == -1 or leverToExit == -1 :
         return -1
     else:
         return toLever+leverToExit
-        # return min(startToExit, toLever+leverToExit)
     
 
 
