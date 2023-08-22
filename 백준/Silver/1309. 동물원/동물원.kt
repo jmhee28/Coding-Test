@@ -10,7 +10,7 @@ class Zoo{
         }
 
         for(i in 2 until N) {
-            dp[i] = ((3* dp[i-2]) + 2 * (dp[i-1] - dp[i-2])) % 9901L
+            dp[i] = (dp[i-2] + 2 * dp[i-1]) % 9901L
         }
 
         var answer = dp[N-1]
