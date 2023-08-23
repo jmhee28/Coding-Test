@@ -16,10 +16,9 @@ class IpAddress{
     fun ipStrToInt(ipAdd:String): Int {
         var parsed = ipAdd.split(".")
         var temp = 0
-        temp = temp or (parsed[0].toInt() shl 24)
-        temp = temp or (parsed[1].toInt() shl 16)
-        temp = temp or (parsed[2].toInt() shl 8)
-        temp = temp or (parsed[3].toInt())
+        for(i in 0 until 4){
+            temp = temp or (parsed[i].toInt() shl (3 - i ) * 8)
+        }
         return temp
     }
 
