@@ -8,20 +8,6 @@ dy = [0, 0, 1, -1]
 
 INF = sys.maxsize
 answer = INF 
-
-def print2d(arr2d):
-    for i in range(len(arr2d)):
-        print(arr2d[i])
-    print()  
-    
-def printDistances(arr, n):
-    for i in range(n):
-        for j in range(n):
-            if arr[i][j] == -1:
-                print(0, end=' ')
-            else:
-                print(arr[i][j], end=' ')
-        print()
         
 def bfs(x, y, idx, visited, boardIdx):
     q = deque()
@@ -58,14 +44,10 @@ def getDistances(island, boardIdx):
                         distances[nx][ny] = distances[x][y] + 1
                         q.append((nx, ny))
                 
-                if boardIdx[nx][ny] != island and boardIdx[nx][ny] != 0:
-                        # print(island)                
-                        # printDistances(distances, n) 
+                if boardIdx[nx][ny] != island and boardIdx[nx][ny] != 0: 
                         return distances[x][y]
                     
-    # print(idx)                
-    # printDistances(distances, n)      
-             
+
 for i in range(n):
     arr = list(map(int, input().split()))
     board.append(arr)
