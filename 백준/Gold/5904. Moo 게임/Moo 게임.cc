@@ -2,7 +2,7 @@
 using namespace std;
 int K, N;
 
-vector<long long> mooSizes(30, 0);
+vector<long long> mooSizes(29, 0);
 long long mooSize = 0;
 string fmoo = "moo";
 
