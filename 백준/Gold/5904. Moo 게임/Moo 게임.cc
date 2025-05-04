@@ -1,10 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
-int K;
-int N;
-vector<long long> mooSizes(50, 0);
+int K, N;
+
+vector<long long> mooSizes(30, 0);
 long long mooSize = 0;
 string fmoo = "moo";
+
 long long getMooSize(int k) { 
     if(mooSizes[k] != 0) {
         return mooSizes[k];
@@ -13,7 +14,6 @@ long long getMooSize(int k) {
     mooSizes[k] =  prev + (k + 2) + 1;
     return mooSizes[k];
 }
-
 
 char getAnswer(int k) {
     if(k == 0){
@@ -39,8 +39,6 @@ int main() {
     mooSizes[0] = 3;
     K = 0;
     cin >> N;
-    // N = 23;
-    
 
     while(true) {
         long long mooSize = getMooSize(K);
