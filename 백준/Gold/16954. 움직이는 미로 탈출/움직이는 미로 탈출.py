@@ -1,13 +1,19 @@
 from collections import deque
-
+import copy
 N = 8
-board = [list(input()) for _ in range(N)]
-
-# 방향: 제자리 + 8방향
+board = []
 dx = [0, 1, -1, 0, 0, 1, 1, -1, -1]
 dy = [0, 0, 0, 1, -1, 1, -1, 1, -1]
 
-# 시간에 따른 board 상태를 미리 저장
+# 옥지 위치
+x = N-1
+y = 0
+
+target = (0, N-1)
+
+for i in range(N):
+    board.append(list(input()))
+    
 def get_boards():
     boards = [board]
     for t in range(1, 9):  # 최대 8초
@@ -20,26 +26,33 @@ def get_boards():
     return boards
 
 boards = get_boards()
+   
 
+            
 def bfs():
     q = deque()
-    q.append((7, 0, 0))  # (x, y, time)
+    q.append([x, y, 0])
     visited = [[[False] * N for _ in range(N)] for _ in range(9)]
-
+    
+    
     while q:
-        x, y, t = q.popleft()
-        if (x, y) == (0, 7):
+        cx, cy, t = q.popleft()
+        
+        if (cx, cy) == target:
             return 1
-        if boards[t][x][y] == '#':
+        if boards[t][cx][cy] == '#':
             continue
+        
         for i in range(9):
-            nx = x + dx[i]
-            ny = y + dy[i]
+            nx = cx + dx[i]
+            ny = cy + dy[i]
             nt = min(t + 1, 8)
-            if 0 <= nx < N and 0 <= ny < N:
+            if 0 <= nx < N and 0 <= ny < N :
                 if boards[t][nx][ny] == '.' and boards[nt][nx][ny] == '.' and not visited[nt][nx][ny]:
-                    visited[nt][nx][ny] = True
-                    q.append((nx, ny, nt))
+                    q.append([nx, ny, nt])
+                    visited[nt][nx][ny] = True    
+            
     return 0
 
-print(bfs())
+answer = bfs()
+print(answer)
